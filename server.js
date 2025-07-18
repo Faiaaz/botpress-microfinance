@@ -146,7 +146,7 @@ app.use((req, res) => {
 });
 
 // Start server
-app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Botpress Microfinance Bot starting...`);
     console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`🌐 Port: ${PORT}`);
@@ -156,6 +156,14 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`💚 Health check: http://localhost:${PORT}/health`);
     console.log(`🧪 Test endpoint: http://localhost:${PORT}/test`);
     console.log(`✅ Server is ready!`);
+});
+
+// Handle server errors
+server.on('error', (error) => {
+    console.error('Server error:', error);
+    if (error.code === 'EADDRINUSE') {
+        console.error('Port is already in use');
+    }
 });
 
 // Handle process errors
