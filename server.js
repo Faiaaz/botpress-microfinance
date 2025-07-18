@@ -117,9 +117,13 @@ async function sendFacebookMessage(recipient_id, botResponse) {
     }
 }
 
-// Health check endpoint
+// Health check endpoint for Railway
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.status(200).json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
 });
 
 // Start server
