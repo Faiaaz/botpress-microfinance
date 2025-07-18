@@ -1,0 +1,169 @@
+{
+  "intents": [
+    {
+      "name": "apply_loan",
+      "utterances": [
+        "I want to apply for a loan",
+        "I need a loan",
+        "I want to get a loan",
+        "I'm interested in applying for a loan",
+        "Can I apply for a loan?",
+        "I want to borrow money",
+        "I need financial assistance",
+        "I want to start a business",
+        "I need money for my business",
+        "I want to expand my business",
+        "I need emergency funds",
+        "I want to apply",
+        "Apply for loan",
+        "Loan application",
+        "I want to apply anyway"
+      ]
+    },
+    {
+      "name": "loan_programs",
+      "utterances": [
+        "Tell me about your loan programs",
+        "What loan programs do you offer?",
+        "What types of loans do you have?",
+        "I want to know about your loans",
+        "What are your loan options?",
+        "Tell me about your services",
+        "What can you offer me?",
+        "What are the different loan types?",
+        "I want to learn about your programs",
+        "What loans are available?",
+        "Loan programs",
+        "Types of loans",
+        "What do you offer?",
+        "Tell me more about loans"
+      ]
+    },
+    {
+      "name": "documents_needed",
+      "utterances": [
+        "What documents do I need?",
+        "What documents are required?",
+        "What do I need to apply?",
+        "What paperwork do I need?",
+        "What are the requirements?",
+        "What documents should I prepare?",
+        "What do I need to bring?",
+        "What are the application requirements?",
+        "Tell me about requirements",
+        "What do I need to get a loan?",
+        "Documents needed",
+        "Requirements for loan",
+        "What papers do I need?",
+        "Application requirements"
+      ]
+    },
+    {
+      "name": "repayment_questions",
+      "utterances": [
+        "I have questions about repayment",
+        "How do I repay the loan?",
+        "What are the repayment terms?",
+        "How much do I have to pay back?",
+        "When do I have to start paying?",
+        "What are the payment terms?",
+        "How does repayment work?",
+        "When do payments start?",
+        "How often do I pay?",
+        "What if I can't pay?",
+        "Repayment terms",
+        "Payment schedule",
+        "How to pay back",
+        "Repayment questions"
+      ]
+    },
+    {
+      "name": "documents_ready",
+      "utterances": [
+        "Yes, I have them",
+        "I have all the documents",
+        "I have everything ready",
+        "Yes, I have the documents",
+        "I have them ready",
+        "I have all the paperwork",
+        "Yes, I have the requirements",
+        "I have everything",
+        "Documents are ready",
+        "I have them all",
+        "Yes, I have the papers",
+        "I'm ready with documents"
+      ]
+    },
+    {
+      "name": "help_with_documents",
+      "utterances": [
+        "I need help getting some documents",
+        "I don't have all the documents",
+        "I need help with documents",
+        "I'm missing some documents",
+        "I don't have everything",
+        "I need assistance with documents",
+        "I'm having trouble getting documents",
+        "I need help getting them",
+        "I don't have the documents",
+        "I need help getting paperwork",
+        "Help with documents",
+        "Missing documents",
+        "I need assistance",
+        "I don't have the papers"
+      ]
+    },
+    {
+      "name": "apply_anyway",
+      "utterances": [
+        "Let me apply anyway",
+        "I want to apply anyway",
+        "Apply without documents",
+        "Can I apply without them?",
+        "I want to try anyway",
+        "Let me try to apply",
+        "Apply without paperwork",
+        "I want to proceed anyway",
+        "Can I still apply?",
+        "I want to apply without documents",
+        "Apply anyway",
+        "Try to apply",
+        "Proceed anyway"
+      ]
+    },
+    {
+      "name": "interest_rates",
+      "utterances": [
+        "What are the interest rates?",
+        "How much interest do you charge?",
+        "What's the interest rate?",
+        "How much will it cost me?",
+        "What are the rates?",
+        "How much interest?",
+        "What's the cost?",
+        "Interest rates",
+        "How much do you charge?",
+        "What are your rates?",
+        "Cost of loan",
+        "Interest charges"
+      ]
+    },
+    {
+      "name": "connect_loan_officer",
+      "utterances": [
+        "Yes, connect me with someone",
+        "I want to speak with someone",
+        "Connect me with a loan officer",
+        "I want to talk to someone",
+        "Can I speak with someone?",
+        "I need to talk to someone",
+        "Connect me with someone",
+        "I want to speak to a person",
+        "Talk to loan officer",
+        "Speak with someone",
+        "Connect with officer",
+        "Talk to someone"
+      ]
+    }
+  ]
+} 

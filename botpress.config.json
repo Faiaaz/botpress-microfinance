@@ -1,0 +1,40 @@
+{
+  "version": "13.0.0",
+  "name": "botpress-microfinance",
+  "description": "Women's Empowerment Microfinance Chatbot",
+  "author": "Your Name",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "botpress start",
+    "dev": "botpress dev",
+    "build": "botpress build"
+  },
+  "dependencies": {
+    "botpress": "^13.0.0",
+    "@botpress/channel-web": "^13.0.0",
+    "@botpress/channel-messenger": "^13.0.0",
+    "@botpress/nlu": "^13.0.0",
+    "@botpress/basic-skills": "^13.0.0"
+  },
+  "botpress": {
+    "secret": "your-secret-key-here",
+    "hostname": "localhost",
+    "port": 3000,
+    "publicPath": "/",
+    "dataDir": "./data",
+    "modulesConfigDir": "./modules_config",
+    "disableFileLogs": false,
+    "logLevel": "info",
+    "notification": {
+      "file": "notifications.json",
+      "maxLength": 50
+    },
+    "log": {
+      "file": "bot.log",
+      "maxSize": "10m",
+      "level": "info",
+      "expiration": "30 days"
+    }
+  }
+} 
