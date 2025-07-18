@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
-const bot = require('./src/bot');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,18 +9,34 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve the web interface
+// Health check endpoint for Railway (simplified)
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
+// Root endpoint
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Botpress webhook endpoint
+// Simple webhook endpoint
 app.post('/webhook', async (req, res) => {
     try {
         const { message, sender } = req.body;
         
-        // Process the message through the bot
-        const response = await bot.processMessage(message, sender);
+        // Simple response for now
+        const response = {
+            text: "Thank you for your message! I'm here to help with microfinance services.",
+            quick_replies: [
+                "Apply for loan",
+                "Loan programs",
+                "Requirements"
+            ]
+        };
         
         res.json(response);
     } catch (error) {
@@ -61,8 +76,10 @@ app.post('/facebook/webhook', async (req, res) => {
                     const message_text = webhook_event.message.text;
                     console.log(`Received message from ${sender_psid}: ${message_text}`);
                     
-                    // Process message through bot
-                    const response = await bot.processMessage(message_text, sender_psid);
+                    // Simple response
+                    const response = {
+                        text: "Thank you for your message! I'm here to help with microfinance services."
+                    };
                     
                     // Send response back to Facebook
                     await sendFacebookMessage(sender_psid, response);
@@ -87,17 +104,6 @@ async function sendFacebookMessage(recipient_id, botResponse) {
         message: { text: botResponse.text }
     };
 
-    // Send quick replies if available
-    if (botResponse.quick_replies && botResponse.quick_replies.length > 0) {
-        const quick_replies = botResponse.quick_replies.map(reply => ({
-            content_type: 'text',
-            title: reply,
-            payload: reply
-        }));
-        
-        messageData.message.quick_replies = quick_replies;
-    }
-
     try {
         const response = await fetch(`https://graph.facebook.com/v18.0/me/messages?access_token=${page_access_token}`, {
             method: 'POST',
@@ -117,21 +123,24 @@ async function sendFacebookMessage(recipient_id, botResponse) {
     }
 }
 
-// Health check endpoint for Railway
-app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'healthy', 
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  });
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Server error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+});
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({ error: 'Not found' });
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Botpress Microfinance Bot running on port ${PORT}`);
     console.log(`📱 Web interface: http://localhost:${PORT}`);
     console.log(`🔗 Webhook endpoint: http://localhost:${PORT}/webhook`);
     console.log(`📘 Facebook webhook: http://localhost:${PORT}/facebook/webhook`);
+    console.log(`💚 Health check: http://localhost:${PORT}/health`);
 });
 
 module.exports = app; 
