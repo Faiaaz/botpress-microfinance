@@ -9,12 +9,23 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Test endpoint
+app.get('/test', (req, res) => {
+  res.json({ 
+    message: 'Server is running!', 
+    timestamp: new Date().toISOString(),
+    port: PORT,
+    env: process.env.NODE_ENV || 'development'
+  });
+});
+
 // Health check endpoint for Railway (simplified)
 app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
+    port: PORT
   });
 });
 
@@ -136,11 +147,26 @@ app.use((req, res) => {
 
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Botpress Microfinance Bot running on port ${PORT}`);
+    console.log(`🚀 Botpress Microfinance Bot starting...`);
+    console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🌐 Port: ${PORT}`);
     console.log(`📱 Web interface: http://localhost:${PORT}`);
     console.log(`🔗 Webhook endpoint: http://localhost:${PORT}/webhook`);
     console.log(`📘 Facebook webhook: http://localhost:${PORT}/facebook/webhook`);
     console.log(`💚 Health check: http://localhost:${PORT}/health`);
+    console.log(`🧪 Test endpoint: http://localhost:${PORT}/test`);
+    console.log(`✅ Server is ready!`);
+});
+
+// Handle process errors
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+    process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    process.exit(1);
 });
 
 module.exports = app; 
